@@ -6,6 +6,8 @@ import { mode } from "@chakra-ui/theme-tools";
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 
+/*haciendo un cambia para probar el git*/
+
 const styles = {
   global: (props) => ({
     body: {
