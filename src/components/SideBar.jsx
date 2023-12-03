@@ -2,6 +2,7 @@ import { Avatar, Box, Flex, Link, Tooltip } from "@chakra-ui/react";
 import { Link as Routerlink } from "react-router-dom";
 import { CreatePostLogo, InstagramLogo, InstagramMobileLogo, NotificationsLogo, SearchLogo } from "../assets/constants";
 import { AiFillHome } from "react-icons/ai";
+import { BiLogOut } from "react-icons/bi";
 
 const sidebar = () => {
     const sidebarItems = [
@@ -29,8 +30,7 @@ const sidebar = () => {
         }
     ]
     return (
-        <>
-            <Box 
+        <Box 
                 height={'100vh'} 
                 borderRight={'1px solid'} 
                 py={8}
@@ -76,8 +76,9 @@ const sidebar = () => {
                                         as={Routerlink} 
                                         borderRadius={6}
                                         p={2} 
-                                        w={10}
-                                        __hover={{bg:'whiteAlpha.200'}}
+                                        w={{base: 10, md: 'full'}}
+                                        justifyContent={{base:'center', md:'flex-start'}}
+                                        _hover={{bg:'whiteAlpha.400'}}
                                     >
                                         {item.icon}
                                         <Box display={{base: 'none', md:'block'}}>
@@ -87,10 +88,38 @@ const sidebar = () => {
                                 </Tooltip>
                             ))}
                         </Flex>
+
+                        <Tooltip 
+                    
+                                    hasArrow
+                                    label={'Logout'}
+                                    placement="right"
+                                    ml={1}
+                                    openDelay={500}
+                                    display={{base:'block', md:'none'}}
+                                >
+                                    <Link 
+                                        display={'flex'}
+                                        alignItems={'center'}
+                                        gap={4}
+                                        to={'/auth'} 
+                                        as={Routerlink} 
+                                        borderRadius={6}
+                                        p={2} 
+                                        mt={'auto'} 
+                                        w={{base: 10, md: 'full'}}
+                                        justifyContent={{base:'center', md:'flex-start'}}
+                                        _hover={{bg:'whiteAlpha.400'}}
+                                    >
+                                        <BiLogOut size={25} />
+                                        <Box display={{base: 'none', md:'block'}}>
+                                            Logout
+                                        </Box>
+                                    </Link>
+                                </Tooltip>
                     </Flex>
 
             </Box>
-        </>
     )
 }
 
