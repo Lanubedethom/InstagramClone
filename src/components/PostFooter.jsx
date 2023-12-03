@@ -1,4 +1,11 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { 
+        Box, 
+        Button, 
+        Flex, 
+        Input, 
+        InputGroup, 
+        InputRightElement, 
+        Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { NotificationsLogo, UnlikeLogo, CommentLogo } from '../assets/constants';
 
@@ -18,7 +25,7 @@ const PostFooter = () => {
     }
 
     return (
-        <>
+        <Box mb={10}>
             <Flex 
                 alignItems={'center'} 
                 gap={4} 
@@ -51,7 +58,31 @@ const PostFooter = () => {
             <Text fontSize={'sm'} color={'gray'}>
                 View all 100 comments
             </Text>
-        </>
+
+            <Flex 
+                alignItems={'center'} 
+                gap={2} 
+                justifyContent={'space-between'} 
+                w={'full'}>
+                <InputGroup>
+                    <Input 
+                        variant={'flushed'} 
+                        fontSize={14}
+                        placeholder={'Add a comment...'} />
+                    <InputRightElement>
+                        <Button
+                            _hover={{color: 'white'}}
+                            bg={'transparent'}
+                            fontWeight={600}
+                            cursor={'pointer'}
+                            color={'blue.500'} 
+                            fontSize={14}>
+                            Post
+                        </Button>
+                    </InputRightElement>
+                </InputGroup>
+            </Flex>
+        </Box>
     )
 }
 

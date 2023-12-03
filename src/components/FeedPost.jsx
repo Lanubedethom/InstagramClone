@@ -6,7 +6,7 @@ const FeedPost = ({ post }) => {
     return (
         <>
             <PostHeader post={post} />
-            <Box>
+            <Box my={2}>
                 <Image src='/img1.png' alt="user profile pic" />
             </Box>
             <PostFooter post={post} />
@@ -16,4 +16,3 @@ const FeedPost = ({ post }) => {
 
 export default FeedPost;
 
-    
