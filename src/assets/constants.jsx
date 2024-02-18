@@ -1,8 +1,8 @@
 export const InstagramLogo = () => (
 	<svg
 		aria-label='Instagram'
-		color='rgb(245, 245, 245)'
-		fill='rgb(245, 245, 245)'
+		color='rgb(0, 0, 0)'
+		fill='rgb(0, 0, 0)'
 		height='29'
 		role='img'
 		viewBox='32 4 113 32'
@@ -20,8 +20,8 @@ export const InstagramLogo = () => (
 export const InstagramMobileLogo = () => (
 	<svg
 		aria-label='Instagram'
-		color='rgb(245, 245, 245)'
-		fill='rgb(245, 245, 245)'
+		color='rgb(0, 0, 0)'
+		fill='rgb(0, 0, 0)'
 		height='24'
 		role='img'
 		viewBox='0 0 24 24'
@@ -35,8 +35,8 @@ export const InstagramMobileLogo = () => (
 export const SearchLogo = () => (
 	<svg
 		aria-label='Search'
-		color='rgb(245, 245, 245)'
-		fill='rgb(245, 245, 245)'
+		color='rgb(0, 0, 0)'
+		fill='rgb(0, 0, 0)'
 		height='24'
 		role='img'
 		viewBox='0 0 24 24'
@@ -66,8 +66,8 @@ export const SearchLogo = () => (
 export const ReelsLogo = () => (
 	<svg
 		aria-label='Reels'
-		color='rgb(245, 245, 245)'
-		fill='rgb(245, 245, 245)'
+		color='rgb(0, 0, 0)'
+		fill='rgb(0, 0, 0)'
 		height='24'
 		role='img'
 		viewBox='0 0 24 24'
@@ -123,8 +123,8 @@ export const ReelsLogo = () => (
 export const MessagesLogo = () => (
 	<svg
 		aria-label='Messenger'
-		color='rgb(245, 245, 245)'
-		fill='rgb(245, 245, 245)'
+		color='rgb(0, 0, 0)'
+		fill='rgb(0, 0, 0)'
 		height='24'
 		role='img'
 		viewBox='0 0 24 24'
@@ -147,8 +147,8 @@ export const MessagesLogo = () => (
 export const NotificationsLogo = () => (
 	<svg
 		aria-label='Notifications'
-		color='rgb(245, 245, 245)'
-		fill='rgb(245, 245, 245)'
+		color='rgb(0, 0, 0)'
+		fill='rgb(0, 0, 0)'
 		height='24'
 		role='img'
 		viewBox='0 0 24 24'
@@ -161,8 +161,8 @@ export const NotificationsLogo = () => (
 export const UnlikeLogo = () => (
 	<svg
 		aria-label='Unlike'
-		color='rgb(255, 48, 64)'
-		fill='rgb(255, 48, 64)'
+		color='rgb(0, 0, 0)'
+		fill='rgb(0, 0, 0)'
 		height='24'
 		role='img'
 		viewBox='0 0 48 48'
@@ -176,8 +176,8 @@ export const UnlikeLogo = () => (
 export const CreatePostLogo = () => (
 	<svg
 		aria-label='New post'
-		color='rgb(245, 245, 245)'
-		fill='rgb(245, 245, 245)'
+		color='rgb(0, 0, 0)'
+		fill='rgb(0, 0, 0)'
 		height='24'
 		role='img'
 		viewBox='0 0 24 24'
@@ -219,8 +219,8 @@ export const CreatePostLogo = () => (
 export const CommentLogo = () => (
 	<svg
 		aria-label='Comment'
-		color='rgb(245, 245, 245)'
-		fill='rgb(245, 245, 245)'
+		color='rgb(0, 0, 0)'
+		fill='rgb(0, 0, 0)'
 		height='24'
 		role='img'
 		viewBox='0 0 24 24'
@@ -236,3 +236,5 @@ export const CommentLogo = () => (
 		></path>
 	</svg>
 );
+
+

@@ -1,16 +1,17 @@
-import { 
-        Box, 
-        Button, 
-        Flex, 
-        Input, 
-        InputGroup, 
-        InputRightElement, 
-        Text } from "@chakra-ui/react";
+import {
+    Box,
+    Button,
+    Flex,
+    Input,
+    InputGroup,
+    InputRightElement,
+    Text
+} from "@chakra-ui/react";
 import { useState } from "react";
 import { NotificationsLogo, UnlikeLogo, CommentLogo } from '../assets/constants';
 
 
-const PostFooter = () => {
+const PostFooter = ({ username }) => {
     const [liked, setLiked] = useState(false);
     const [likes, setLikes] = useState(1000);
 
@@ -26,16 +27,16 @@ const PostFooter = () => {
 
     return (
         <Box mb={10}>
-            <Flex 
-                alignItems={'center'} 
-                gap={4} 
-                w={'full'} 
-                pt={0} 
-                mb={2} 
-                mt={4}> 
+            <Flex
+                alignItems={'center'}
+                gap={4}
+                w={'full'}
+                pt={0}
+                mb={2}
+                mt={4}>
 
                 <Box onClick={handleClick} >
-                    {!liked ? <NotificationsLogo/> : <UnlikeLogo/>}
+                    {!liked ? <NotificationsLogo /> : <UnlikeLogo />}
                 </Box>
 
                 <Box cursor={'pointer'} fontSize={18}>
@@ -48,9 +49,9 @@ const PostFooter = () => {
             </Text>
 
             <Text fontSize={'sm'} fontWeight={700}>
-                Ciro_{' '}
+                {username}{' '}
                 <Text as={'span'} fontWeight={400}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Quisquam, voluptatum.
                 </Text>
             </Text>
@@ -59,23 +60,23 @@ const PostFooter = () => {
                 View all 100 comments
             </Text>
 
-            <Flex 
-                alignItems={'center'} 
-                gap={2} 
-                justifyContent={'space-between'} 
+            <Flex
+                alignItems={'center'}
+                gap={2}
+                justifyContent={'space-between'}
                 w={'full'}>
                 <InputGroup>
-                    <Input 
-                        variant={'flushed'} 
+                    <Input
+                        variant={'flushed'}
                         fontSize={14}
                         placeholder={'Add a comment...'} />
                     <InputRightElement>
                         <Button
-                            _hover={{color: 'white'}}
+                            _hover={{ color: 'white' }}
                             bg={'transparent'}
                             fontWeight={600}
                             cursor={'pointer'}
-                            color={'blue.500'} 
+                            color={'blue.500'}
                             fontSize={14}>
                             Post
                         </Button>
