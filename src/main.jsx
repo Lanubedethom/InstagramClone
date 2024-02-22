@@ -5,6 +5,7 @@ import { extendTheme } from '@chakra-ui/react'
 import { mode } from "@chakra-ui/theme-tools";
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
+import './index.css'
 
 /*haciendo un cambia para probar el git*/
 
