@@ -1,8 +1,9 @@
-import { Avatar, Box, Flex, Link, Tooltip } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Link, Tooltip, Button } from "@chakra-ui/react";
 import { Link as Routerlink } from "react-router-dom";
 import { CreatePostLogo, InstagramLogo, InstagramMobileLogo, NotificationsLogo, SearchLogo } from "../assets/constants";
 import { AiFillHome } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
+import useLogout from '../hooks/useLogout';
 
 const sidebar = () => {
     const sidebarItems = [
@@ -29,6 +30,9 @@ const sidebar = () => {
             link: '/asaprogrammer'
         }
     ]
+
+    const { handleLogout, isLoggingOut } = useLogout();
+
     return (
         <Box
             height={'100vh'}
@@ -89,6 +93,8 @@ const sidebar = () => {
                     ))}
                 </Flex>
 
+                {/*LOG OUT */}
+
                 <Tooltip
 
                     hasArrow
@@ -98,12 +104,10 @@ const sidebar = () => {
                     openDelay={500}
                     display={{ base: 'block', md: 'none' }}
                 >
-                    <Link
-                        display={'flex'}
+                    <Flex
+                        onClick={handleLogout}
                         alignItems={'center'}
                         gap={4}
-                        to={'/auth'}
-                        as={Routerlink}
                         borderRadius={6}
                         p={2}
                         mt={'auto'}
@@ -112,10 +116,15 @@ const sidebar = () => {
                         _hover={{ bg: 'whiteAlpha.400' }}
                     >
                         <BiLogOut size={25} />
-                        <Box display={{ base: 'none', md: 'block' }}>
-                            Logout
-                        </Box>
-                    </Link>
+                        <Button
+                            variant='ghost'
+                            _hover={{ bg: 'blue.800' }}
+                            isLoading={isLoggingOut}
+                            display={{ base: 'none', md: 'block' }}
+                        >
+                            Log Out
+                        </Button>
+                    </Flex>
                 </Tooltip>
             </Flex>
 
