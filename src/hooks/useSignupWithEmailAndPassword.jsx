@@ -22,7 +22,23 @@ const useSignupWithEmailAndPassword = () => {
             console.log('Please fill all the fields');
             return;
         }
+
+        // hacemos una consulta para debolver todos los usuarios que tengan el mismo username
+        // si el querySnapshot no esta vacio, significa que ya existe un usuario con ese 
+        // username
+        const userRef = collection(db, 'users');
+        const q = query(userRef, where('username', '==', input.username));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+            showToast('Error', 'Username already taken', 'error');
+            return;
+        }
+
+
+
         try {
+            {/* el metodo createUse.. verifica que no exista dos emails, pero usuarios */ }
             const newUser = await createUserWithEmailAndPassword(input.email, input.password)
             if (!newUser && error) {
                 showToast('Error', error.message, 'error');

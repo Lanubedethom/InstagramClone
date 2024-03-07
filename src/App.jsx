@@ -5,6 +5,7 @@ import AuthPage from './pages/AuthPage'
 import ProfilePage from './pages/ProfilePage'
 import PageLayout from './layout/PageLayout'
 import useAuthStore from './store/authStore'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 
 // haciendo cambios en la rama nice
@@ -14,7 +15,11 @@ import useAuthStore from './store/authStore'
 
 function App() {
   {/**esto confira si el usuario se autentico o no */ }
-  const authUser = useAuthStore(state => state.user)
+  //const authUser = useAuthStore(state => state.user)
+  // esto es ultimo miniuto, este hook es de react-firebase-hooks
+  // sirve para escuchar el estado de autenticacion de firebase
+  // si el usuario esta autenticado, authUser es el usuario
+  const [authUser] = useAuthState(auth);
 
   return (
     <PageLayout>
