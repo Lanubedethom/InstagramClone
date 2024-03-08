@@ -15,7 +15,7 @@ const SuggestedHeader = () => {
                 </RouterLink>
                 <RouterLink to={`${authUser.username}`}>
                     <Text fontSize={12} fontWeight={'bold'}>
-                        As a programmer
+                      {authUser.username}
                     </Text>
                 </RouterLink>
             </Flex>
