@@ -1,19 +1,31 @@
-import { Avatar, Box, Flex, Text, Link } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Text, Button } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
+import useLogout from "../hooks/useLogout";
+import useAuthStore from "../store/authStore";
 
 const SuggestedHeader = () => {
+    const { handleLogout, isLoggingOut } = useLogout();
+    const authUser = useAuthStore(state => state.user)
+
     return (
         <Flex justifyContent={'space-between'} alignItems={'center'} w={'full'}>
             <Flex align={'center'} gap={2}>
-                <Avatar name='As a programmer' size={'md'} src="/profilepic.png" />
-                <Text fontSize={12} fontWeight={'bold'}>
-                    As a programmer
-                </Text>
+                <RouterLink to={`${authUser.username}`}>
+                    <Avatar size={'md'} src={authUser.profilePicURL} />
+                </RouterLink>
+                <RouterLink to={`${authUser.username}`}>
+                    <Text fontSize={12} fontWeight={'bold'}>
+                        As a programmer
+                    </Text>
+                </RouterLink>
             </Flex>
 
-            <Link
-                as={RouterLink}
-                to={'/auth'}
+            <Button
+                isLoading={isLoggingOut}
+                onClick={handleLogout}
+                size={'xs'}
+                background={'transparent'}
+                _hover={{ background: 'transparent' }}
                 fontSize={14}
                 fontWeight={'medium'}
                 color={'blue.400'}
@@ -21,7 +33,7 @@ const SuggestedHeader = () => {
                 cursor={'pointer'}
             >
                 Log out
-            </Link>
+            </Button>
         </Flex>
 
     )
