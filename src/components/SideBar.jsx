@@ -4,8 +4,13 @@ import { CreatePostLogo, InstagramLogo, InstagramMobileLogo, NotificationsLogo, 
 import { AiFillHome } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import useLogout from '../hooks/useLogout';
+import useUserProfileStore from '../store/userProfileStore.js'
+import useAuthStore from '../store/authStore.js'
 
 const sidebar = () => {
+    const authUser = useAuthStore((state) => state.user);
+
+
     const sidebarItems = [
         {
             icon: <AiFillHome size={25} />,
@@ -27,7 +32,7 @@ const sidebar = () => {
         {
             icon: <Avatar size={'sm'} name="Algo" src="/profilepic.png" />,
             text: 'Profile',
-            link: '/asaprogrammer'
+            link: `${authUser.username}`
         }
     ]
 
