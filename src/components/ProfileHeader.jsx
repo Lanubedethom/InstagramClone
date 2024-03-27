@@ -1,16 +1,28 @@
 import {
     Avatar,
     Text,
-    AvatarGroup, Button, Flex, VStack
-} from "@chakra-ui/react";
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    useDisclosure,
+    AvatarGroup, Button, Flex, VStack,
+} from '@chakra-ui/react'
 import useUserProfileStore from '../store/userProfileStore.js'
 import useAuthStore from '../store/authStore.js'
+import EditProfile from './EditProfile.jsx'
 
 const ProfileHeader = ({ user }) => {
-    const { userProfile } = useUserProfileStore();
+    //const { userProfile } = useUserProfileStore();
+    const userProfile = useUserProfileStore(state => state.userProfile)
     const authUser = useAuthStore(state => state.user);
-    const visitingOwnProfileAndAuth = authUser && authUser.username === userProfile.username;7
+    const visitingOwnProfileAndAuth = authUser && authUser.username === userProfile.username;
     const visitingAnotherProfileAndAuth = authUser && authUser.username !== userProfile.username;
+    // para editar el perfil
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
         <Flex gap={{ base: 4, sm: 10 }}
@@ -49,6 +61,7 @@ const ProfileHeader = ({ user }) => {
                             color={'white'}
                             _hover={{ bg: 'blue.800' }}
                             size={{ base: 'xs', md: 'sm' }}
+                            onClick={onOpen}
                           >
                               Edit Profile
                           </Button>
@@ -93,7 +106,7 @@ const ProfileHeader = ({ user }) => {
 
                 <Flex alignItems={'center'} gap={4}>
                     <Text fontSize={'sm'} fontWeight={'bold'}>
-                        {userProfile.username}
+                        {userProfile.fullName}
                     </Text>
                 </Flex>
 
@@ -101,6 +114,8 @@ const ProfileHeader = ({ user }) => {
                     {userProfile.bio}
                 </Text>
             </VStack>
+
+            {isOpen && <EditProfile isOpen={isOpen} onClose={onClose}/>}
 
         </Flex >
     );
