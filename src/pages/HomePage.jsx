@@ -15,7 +15,7 @@ const HomePage = () => {
                     flex={3}
                     maxW={'300px'}
                     display={{ base: 'none', lg: 'block' }}>
-
+                    <SuggestedUsers />
                 </Box>
             </Flex>
         </Container>

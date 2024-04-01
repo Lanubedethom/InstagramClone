@@ -1,38 +1,49 @@
 import { Flex, VStack, Text, Link, Box } from '@chakra-ui/react'
-import SuggestedHeader from "./SuggestesHeader";
+import SuggestedHeader from './SuggestesHeader'
 import SuggestedUser from './SuggestedUser.jsx'
+import useGetSuggestedUsers from '../hooks/useGetSuggestedUsers.js'
 
 const SuggestedUsers = () => {
-    return (
-        <VStack py={8} px={6} gap={4}>
-            <SuggestedHeader />
+  const {isLoading, suggestedUsers} = useGetSuggestedUsers()
+  if (isLoading) return null;
 
-            <Flex alignItems={'center'} justifyContent={'space-between'} w={'full'}>
-                <Text fontSize={12} fontWeight={'bold'} color={'gray.500'}>
-                    Suggested for you
-                </Text>
-                <Text fontSize={12} fontWeight={'bold'} _hover={{ color: 'gray.400' }} cursor={'pointer'}>
-                    See All
-                </Text>
-            </Flex>
+  return (
+    <VStack py={8} px={6} gap={4}>
+      <SuggestedHeader />
 
-            <SuggestedUser name='Dan Brown' followers={13697} avatar={'https://bit.ly/dan-abramov'} />
-            <SuggestedUser />
-            <SuggestedUser />
+      {suggestedUsers.length !== 0 && (
+        <Flex alignItems={'center'} justifyContent={'space-between'} w={'full'}>
+          <Text fontSize={12} fontWeight={'bold'} color={'gray.500'}>
+            Suggested for you
+          </Text>
+          <Text
+            fontSize={12}
+            fontWeight={'bold'}
+            _hover={{ color: 'gray.400' }}
+            cursor={'pointer'}
+          >
+            See All
+          </Text>
+        </Flex>
+      )}
 
-            <Box fontSize={12} color={'gray.500'} mt={5} alignSelf={'start'}>
-                2023 built by {''}
-                <Link
-                    href={'www.google.com'}
-                    color={'blue.500'}
-                    fontSize={14}
-                    target='_blank'>
-                    As a programmer
-                </Link>
-            </Box>
-        </VStack >
+      {suggestedUsers.map((user) => (
+          <SuggestedUser user={user} key={user.id} />
+        ))}
 
-    )
+      <Box fontSize={12} color={'gray.500'} mt={5} alignSelf={'start'}>
+        2023 built by {''}
+        <Link
+          href={'www.google.com'}
+          color={'blue.500'}
+          fontSize={14}
+          target='_blank'
+        >
+          As a programmer
+        </Link>
+      </Box>
+    </VStack>
+  )
 }
 
-export default SuggestedUsers;
+export default SuggestedUsers
