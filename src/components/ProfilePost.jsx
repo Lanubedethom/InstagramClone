@@ -1,6 +1,6 @@
 import {
   Avatar,
-  Box,
+  Button,
   Divider,
   Flex,
   GridItem,
@@ -21,11 +21,13 @@ import Comment from './Comment'
 import PostFooter from './PostFooter'
 import useUserProfileStore from '../store/userProfileStore.js'
 import useAuthStore from '../store/authStore.js'
+import useDeletePost from '../hooks/useDeletePost.js'
 
 const ProfilePost = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const authUser = useAuthStore((state) => state.user)
   const userProfile = useUserProfileStore((state) => state.userProfile)
+  const { handleDeletePost, isDeleting } = useDeletePost({ post })
   console.log(post)
 
   return (
@@ -128,13 +130,17 @@ const ProfilePost = ({ post }) => {
                   </Flex>
 
                   {authUser?.uid === userProfile.uid && (
-                    <Box
+                    <Button
+                      size={'sm'}
+                      background={'transparent'}
                       _hover={{ bg: 'whiteAlpha.300', color: 'red.600' }}
                       borderRadius={4}
                       p={1}
+                      onClick={() => handleDeletePost()}
+                      isLoading={isDeleting}
                     >
                       <MdDelete size={20} cursor={'pointer'} />
-                    </Box>
+                    </Button>
                   )}
                 </Flex>
 
@@ -146,24 +152,17 @@ const ProfilePost = ({ post }) => {
                   maxH={'350px'}
                   overflowY={'auto'}
                 >
-                  <Comment
-                    createdAt={'a day ago'}
-                    username='ciro'
-                    profilePic='/profilepic.png'
-                    text={'I love this post'}
-                  />
-
-                  <Comment
-                    createdAt={'a day ago'}
-                    username='Albert'
-                    profilePic='/img1.png'
-                    text={'Another day in life'}
-                  />
+                  {post.comments.map((comment) => (
+                    <Comment
+                      key={comment.createdAt}
+                      comment={comment}
+                    />
+                  ))}
                 </VStack>
 
                 <Divider mt={8} bg={'gray.200'} />
 
-                <PostFooter isProfilePage={true} />
+                <PostFooter isProfilePage={true} post={post} />
               </Flex>
             </Flex>
           </ModalBody>
