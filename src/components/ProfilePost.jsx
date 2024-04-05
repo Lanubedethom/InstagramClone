@@ -22,6 +22,7 @@ import PostFooter from './PostFooter'
 import useUserProfileStore from '../store/userProfileStore.js'
 import useAuthStore from '../store/authStore.js'
 import useDeletePost from '../hooks/useDeletePost.js'
+import Caption from './Caption'
 
 const ProfilePost = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -152,6 +153,10 @@ const ProfilePost = ({ post }) => {
                   maxH={'350px'}
                   overflowY={'auto'}
                 >
+                  {/*THE CAPTION SECTION*/}
+                  {post.caption && <Caption post={post} />}
+
+                  {/*THE COMMENT SECTION*/}
                   {post.comments.map((comment) => (
                     <Comment
                       key={comment.createdAt}
