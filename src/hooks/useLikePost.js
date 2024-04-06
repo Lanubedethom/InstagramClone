@@ -5,6 +5,10 @@ import useShowToast from './useShowToast.js'
 import { db } from '../firebase/firebase.js'
 
 const useLikePost = (post) => {
+  if (!post) {
+    throw new Error('Post is undefined');
+  }
+
   const [isUpdating, setIsUpdating] = useState(false)
   const authUser = useAuthStore(state => state.user);
   const [likes, setLikes] = useState(post.likes.length)

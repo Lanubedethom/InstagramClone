@@ -11,6 +11,7 @@ const useGetUserProfileById = (userId) => {
   useEffect(() => {
     const getUserProfile = async () => {
       setIsLoading(true);
+      setUserProfile(null)
       try {
         const userRef = await getDoc(doc(db, 'users', userId));
         if (userRef.exists()) setUserProfile(userRef.data());
