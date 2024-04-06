@@ -9,11 +9,13 @@ import { getDownloadURL, ref, uploadString } from 'firebase/storage'
 import { db, storage } from '../firebase/firebase.js'
 
 
+
 const useCreatePost = () => {
   const showToast = useShowToast();
   const [isLoading, setIsLoading] = useState(false);
   const authUser = useAuthUser((state) => state.user);
   const addPost = useUserProfileStore((state) => state.addPost);
+  const userProfile = useUserProfileStore((state) => state.userProfile);
   const createPost = usePostStore((state) => state.createPost);
   const { pathname } = useLocation();
 
@@ -46,8 +48,12 @@ const useCreatePost = () => {
       });
 
       newPost.imgUrl = downloadUrl;
-      createPost({ ...newPost, id: postDocRef.id });
-      addPost({...newPost, id: postDocRef.id });
+      if (userProfile?.id === authUser.uid) {
+        createPost({ ...newPost, id: postDocRef.id });
+      }
+      if (pathname !== '/' && userProfile?.id === authUser.uid) {
+        addPost({ ...newPost, id: postDocRef.id });
+      }
       showToast('Success', 'Post created successfully', 'success');
     } catch (error) {
       showToast('Error', error.message, 'error');
