@@ -11,35 +11,26 @@ import { useRef, useState } from 'react'
 import { CommentLogo, NotificationsLogo, UnlikeLogo } from '../assets/constants'
 import usePostComment from '../hooks/usePostComment.js'
 import useAuthStore from '../store/authStore.js'
+import useLikePost from '../hooks/useLikePost.js'
 
 const PostFooter = ({ post, username, isProfilePage }) => {
-  const [liked, setLiked] = useState(false)
-  const [likes, setLikes] = useState(1000)
+
   const { handlePostComment, isCommenting } = usePostComment()
   const authUser = useAuthStore((state) => state.user)
   const [comment, setComment] = useState('')
   const commentRef = useRef(null)
+  const { isLiked, likes, handleLikePost } = useLikePost(post)
 
   const handleSubmitComment = async () => {
     await handlePostComment(post.id, comment)
     setComment('')
   }
 
-  const handleClick = () => {
-    if (liked) {
-      setLiked(false)
-      setLikes(likes - 1)
-    } else {
-      setLiked(true)
-      setLikes(likes + 1)
-    }
-  }
-
   return (
     <Box mb={10} marginTop={'auto'}>
       <Flex alignItems={'center'} gap={4} w={'full'} pt={0} mb={2} mt={4}>
-        <Box onClick={handleClick}>
-          {!liked ? <NotificationsLogo /> : <UnlikeLogo />}
+        <Box onClick={handleLikePost}>
+          {!isLiked ? <NotificationsLogo /> : <UnlikeLogo />}
         </Box>
 
         <Box
